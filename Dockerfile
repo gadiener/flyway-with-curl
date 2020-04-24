@@ -5,7 +5,8 @@ WORKDIR /flyway
 RUN apk --no-cache add --update bash openssl curl
 
 # Add the flyway user and step in the directory
-RUN adduser -S -h /flyway -D flyway
+RUN  addgroup -S flyway \
+  && adduser -S -h /flyway -D -G flyway flyway
 
 COPY --chown=flyway:flyway ./scripts/wait-for-it.sh /usr/bin/wait-for-it
 
